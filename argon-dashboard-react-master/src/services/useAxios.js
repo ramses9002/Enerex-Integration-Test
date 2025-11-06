@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use(
         if (status) {
             switch (status) {
                 case 401:
-                    showToast("The token is invalid; you must authenticate.", "error");
+                    showToast("The token is invalid, you must authenticate.", "error");
                     break;
                 case 403:
                     showToast("You do not have permission for this operation.", "error");
