@@ -1,12 +1,12 @@
 import { Modal, Button, Card, CardHeader, CardBody } from "reactstrap";
 
-const ConfirmModal = ({ show = false, toggle, message = "¿Está seguro?", onAccept }) => {
+const ConfirmModal = ({ show = false, toggle, message = "Are you sure?", onAccept }) => {
     return (
         <Modal isOpen={show} toggle={toggle} centered>
             <Card className="bg-secondary shadow border-0">
                 <CardHeader className="bg-white">
                     <div className="text-muted text-center mt-2">
-                        <h3 className="mb-0">Confirmación</h3>
+                        <h3 className="mb-0">Confirmation</h3>
                     </div>
                 </CardHeader>
                 <CardBody className="px-lg-5 py-lg-5 text-center">

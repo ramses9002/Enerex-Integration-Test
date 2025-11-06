@@ -1,12 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { DropdownMenu, DropdownItem, UncontrolledDropdown, DropdownToggle, Navbar, Nav, Container, Media } from "reactstrap";
-
+import ConfirmModal from "components/ConfirmModal";
+import { useState } from "react";
 const AdminNavbar = (props) => {
     const location = useLocation();
-
+    const [showModal, setShowModal] = useState(false);
     const path = location.pathname;
-
+    const navigate = useNavigate();
     // Determinar nombre según path parcial
     let currentPage = "Admin Panel"; // valor por defecto
     if (path.includes("/admin")) currentPage = "Manage Students";
@@ -32,7 +32,13 @@ const AdminNavbar = (props) => {
                                 </Media>
                             </DropdownToggle>
                             <DropdownMenu className="dropdown-menu-arrow" right>
-                                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                                <DropdownItem
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setShowModal(true);
+                                    }}
+                                >
                                     <i className="ni ni-user-run" />
                                     <span>Logout</span>
                                 </DropdownItem>
@@ -41,6 +47,15 @@ const AdminNavbar = (props) => {
                     </Nav>
                 </Container>
             </Navbar>
+            <ConfirmModal
+                show={showModal}
+                toggle={() => setShowModal(false)}
+                message={"You wish to close your session?"}
+                onAccept={() => {
+                    sessionStorage.removeItem("key_token")
+                    navigate("/");
+                }}
+            />
         </>
     );
 };
